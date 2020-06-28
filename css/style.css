@@ -5,7 +5,6 @@ body {
 
 .titulo {
     width: 100%;
-    font-size: 1.2em;
     text-align: center;
     margin-left: 0;
     height: 10vh;
@@ -19,6 +18,7 @@ body {
 
 .titulo h2 {
     color: white;
+    font-size: 1.5em;
     text-shadow: 0 0 0.5em rgb(242, 137, 80), 0 0 0.5em rgb(230, 178, 48), 0 0 0.5em rgb(249, 180, 63);
 }
 
@@ -90,6 +90,7 @@ body {
     border: 5px solid burlywood;
     border-radius: 10px;
     background-color: aliceblue;
+    overflow: auto;
 }
 
 .tabla_carrito {
@@ -124,13 +125,13 @@ body {
 
 .total_carrito p {
     text-align: center;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-left: 10px;
     display: block;
 }
 
 .mostrador {
-    padding: 10px;
+    padding: 20px;
     width: 90%;
     margin: 0 auto;
 }

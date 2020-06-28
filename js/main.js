@@ -1,16 +1,4 @@
-/*class Frutas {
-
-    constructor(nombre, precio){
-        this.nombre = nombre;
-        this.precio = precio;
-    }
-
-    getPrecio(cantidad){
-        return this.precio * cantidad;
-    }
-}*/
-
-const frutas  = [
+const frutas   = [
     {
         nombre: "Banana",
         precio: 1.5
@@ -70,7 +58,6 @@ var totalCarrito = 0.0;
 
 function allowDrop(ev) {
     ev.preventDefault();
-
 }
 
 function drag(ev) {
@@ -80,8 +67,6 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     var fruta = ev.dataTransfer.getData("text");
-    // console.log(fruta);
-
     ev.target.appendChild(document.getElementById(fruta));
     actualizaEstado(fruta);
 }
@@ -113,9 +98,6 @@ function pintarCarrito() {
     limpiarCarrito();
     let table = document.getElementById("tabla_body")
 
-    console.log("**** pintando carrito ****")
-    console.log(carrito);
-
     for (fruta of carrito) {
         let tr = document.createElement("tr");
         let columna1 = document.createElement("td");
@@ -126,11 +108,12 @@ function pintarCarrito() {
         columna1.innerHTML = fruta.nombre;
         tr.appendChild(columna1);
 
-        let input = document.createElement("input");
-        input.setAttribute("type", "number");
-        input.setAttribute("placeholder", "1 Ud");
+        //let input = document.createElement("input");
+        //input.setAttribute("type", "number");
+        //input.setAttribute("placeholder", "1 Ud");
 
-        columna2.appendChild(input);
+        //columna2.appendChild(input);
+        columna2.innerHTML = "1 Ud";
         tr.appendChild(columna2);
 
         columna3.innerHTML = fruta.precio + " €";
@@ -138,6 +121,8 @@ function pintarCarrito() {
 
         let img = document.createElement("img");
         img.setAttribute("id", "trash");
+        let funcion = "quitarFruta( " + fruta.nombre + ")";
+        img.setAttribute("onClick", funcion);
         img.setAttribute("src", "./img/compartimiento.png")
 
         columna4.appendChild(img);
@@ -145,6 +130,11 @@ function pintarCarrito() {
 
         table.appendChild(tr);
     }
+}
+
+function quitarFruta(nombreFruta){
+    console.log(  nombreFruta.id  );
+    quitarloCarrito(nombreFruta.id)
 }
 
 function añadirCarrito(id) {
@@ -185,7 +175,7 @@ function quitarloCarrito(id) {
 
 
 function filtrarCarrito(fruta) {
-    carritoAux = [];
+    let carritoAux = [];
     for (frutaCarrito of carrito) {
         if (fruta.nombre !== frutaCarrito.nombre) {
             if (!carritoAux.includes(fruta)) {
