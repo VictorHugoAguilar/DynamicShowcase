@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, Geeks, Geekshubs Online">
+    <meta name="author" content="Geeks Victor Hugo">
+    <meta name="description" content="Geekshubs Online">
+    <base href="./" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link type="text/css" href="css/fontawesome.css" rel="stylesheet">
+    <script src="js/main.js"></script>
+    <title>Web Carrito Compra - Futas</title>
+</head>
+
+<body>
+
+    <header class="titulo">
+        <h2>Quien necesita una media naranja con todas las futas que hay por ahi</h2>
+    </header>
+
+    <section class="section">
+        <table class="mostrador">
+            <tr>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/banana.png" draggable="true" ondragstart="drag(event)" id="Banana"> $1,50 € </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/cceraza.png" draggable="true" ondragstart="drag(event)" id="Cereza"> $2,50 €  </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/ceraza.png" draggable="true" ondragstart="drag(event)" id="Arandano"> $2,00 €  </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/frambuesa.png" draggable="true" ondragstart="drag(event)" id="Frambuesa"> $3,50 €  </small></td>
+            </tr>
+            <tr>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/fresa.png" draggable="true" ondragstart="drag(event)" id="Fresa"> $3,00 €  </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/granada.png" draggable="true" ondragstart="drag(event)" id="Granada"> $2,20 € </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class=" imagen_fruta " src="./img/kiwi.png " draggable="true " ondragstart="drag(event) " id="Kiwi">$1,20 €</small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/mango.png" draggable="true" ondragstart="drag(event)" id="Mango"> $3,50 €  </small></td>
+
+            </tr>
+            <tr>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/manzana.png" draggable="true" ondragstart="drag(event)" id="Manzana"> $1,90 €  </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/melocoton.png" draggable="true" ondragstart="drag(event)" id="Melocoton"> $1,50 €  </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/mora.png" draggable="true" ondragstart="drag(event)" id="Mora"> $4,50 €  </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/naranja.png" draggable="true" ondragstart="drag(event)" id="Naranja"> $1,10 €  </small></td>
+            </tr>
+            <tr>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/pera.png" draggable="true" ondragstart="drag(event)" id="Pera"> $3,00 €  </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/pina.png" draggable="true" ondragstart="drag(event)" id="Piña"> $2,70 €  </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/sandia.png" draggable="true" ondragstart="drag(event)" id="Sandia"> $0,50 €  </small></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"> <small class="etiqueta"><img class="imagen_fruta" src="./img/uva.png" draggable="true" ondragstart="drag(event)" id="Uva"> $2,50 €  </small></td>
+
+            </tr>
+
+        </table>
+
+    </section>
+
+    <aside class="aside">
+        <h4 class="titulo_carrito">Introdusca los productos al carrito</h4>
+
+        <div class="carrito">
+            <div id="carrito" class="carrito_fruta" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+        </div>
+
+        <div class="descripcion_carrito">
+            <table class="tabla_carrito" id="tabla_carrito">
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Kg</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Zanahoria</td>
+                    <td><input type="number" placeholder="500 grs"></td>
+                    <td>1,50€</td>
+                    <td><img id="trash" src="./img/compartimiento.png"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="total_carrito">
+            <p> TOTAL €<small class="total_carrito_precio" id="total_carrito_precio"> 0 </small></p>
+        </div>
+
+    </aside>
+
+
+    <footer class="footer">
+        <p>desing, by <a rel="noopener noreferrer" href="https://github.com/VictorHugoAguilar?tab=repositories" target="_blank">#victorHugo</a>. <i class="fab fa-github-square"></i> </p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.titulo {
+    width: 100%;
+    font-size: 1.2em;
+    text-align: center;
+    margin-left: 0;
+    height: 10vh;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: brown;
+    background-image: url(../img/42925.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.titulo h2 {
+    color: white;
+    text-shadow: 0 0 0.5em rgb(242, 137, 80), 0 0 0.5em rgb(230, 178, 48), 0 0 0.5em rgb(249, 180, 63);
+}
+
+.section {
+    display: inline-block;
+    height: 80vh;
+    width: 60%;
+    background-image: url(../img/234.jpg);
+    background-size: contain;
+}
+
+.aside {
+    float: left;
+    height: 80vh;
+    width: 40%;
+    background-color: rgb(157, 131, 74);
+}
+
+.footer {
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+    text-align: center;
+    color: white;
+    height: 10vh;
+    background-color: brown;
+    background-image: url(../img/42925.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.footer a {
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.carrito {
+    width: 100%;
+    height: 150px;
+    background-image: url(../img/image_processing20200511-27036-gy28wv.png);
+    background-size: 30%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.carrito_fruta {
+    width: 100%;
+    height: 100%;
+}
+
+.carrito_fruta .imagen_fruta {
+    width: 50px;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
+}
+
+.titulo_carrito {
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    padding-top: 14px;
+    background-color: saddlebrown;
+    text-transform: uppercase;
+    color: aliceblue;
+}
+
+.descripcion_carrito {
+    margin: 0 auto;
+    width: 90%;
+    height: 45%;
+    border: 5px solid burlywood;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+
+.tabla_carrito {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.tabla_carrito th {
+    text-align: center;
+}
+
+.tabla_carrito th:last-child {
+    width: 10%;
+    text-align: center;
+}
+
+.tabla_carrito td {
+    text-align: right;
+}
+
+#trash {
+    width: 1em;
+}
+
+.total_carrito {
+    height: 30px;
+    background-color: saddlebrown;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.total_carrito p {
+    text-align: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    display: block;
+}
+
+.mostrador {
+    padding: 10px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.imagen_fruta {
+    width: 100px;
+}
+
+.imagen_fruta:hover {
+    transform: scale(1.2, 1.2);
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
+}
+
+.etiqueta {
+    display: inline-block;
+    border: 3px solid darkorange;
+    border-radius: 10%;
+    background-color: rgb(210, 209, 182);
+    padding: 4px;
+    transform: rotate(-12deg);
+}
