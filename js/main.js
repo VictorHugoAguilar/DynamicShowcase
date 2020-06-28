@@ -96,7 +96,7 @@ function drop(ev) {
     */
 
     var data = ev.dataTransfer.getData("text");
-    console.log(data);
+    // console.log(data);
     ev.target.appendChild(document.getElementById(data));
     testing();
 }
@@ -107,7 +107,7 @@ function testing() {
     for (var i = 0; i < frutasSeleccionadas.length; i++) {
         if (frutasSeleccionadas[i].parentNode.getAttribute("id") == "carrito") {
             // cogemos el id para identificar el producto
-            console.log(frutasSeleccionadas[i].getAttribute("id"));
+            // console.log(frutasSeleccionadas[i].getAttribute("id"));
             añadirCarrito(frutasSeleccionadas[i].getAttribute("id"))
         }
     }
@@ -139,7 +139,7 @@ function pintarCarrito(idFruta) {
     columna2.appendChild(input);
     tr.appendChild(columna2);
 
-    columna3.innerHTML = frutaSeleccionada.precio;
+    columna3.innerHTML = frutaSeleccionada.precio + " €";
     tr.appendChild(columna3);
 
     let img = document.createElement("img");
@@ -152,21 +152,27 @@ function pintarCarrito(idFruta) {
     table.appendChild(tr);
 }
 
-
 function añadirCarrito(id) {
-    console.log(carrito);
-    for (fruta of frutas) {
-        if (fruta.nombre === id && !carrito.includes(fruta)) {
-            carrito.push(fruta);
-            pintarCarrito(fruta.nombre);
-            totalCarrito += fruta.precio;
+    for (let i = 0; i < frutas.length; i++) {
+        let nombreFruta = frutas[i].nombre;
+        if (frutas[i].nombre === id && !carrito.includes(frutas[i])) {
+            carrito.push(frutas[i]);
+            pintarCarrito(frutas[i].nombre);
+            totalCarrito += frutas[i].precio;
         }
     };
     calculaTotal(totalCarrito);
-    console.log(carrito);
-    console.log("Total -> " + totalCarrito);
 }
 
 function calculaTotal(totalCarrito) {
     document.getElementById("total_carrito_precio").innerHTML = totalCarrito;
+}
+
+function estaContenido(idNombre) {
+    for (fruta of carrito) {
+        if (fruta.nombre === idNombre) {
+            return true;
+        }
+    }
+    return false;
 }
