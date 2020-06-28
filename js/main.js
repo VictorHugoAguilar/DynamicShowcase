@@ -10,7 +10,7 @@
     }
 }*/
 
-const frutas = [
+const frutas  = [
     {
         nombre: "Banana",
         precio: 1.5
@@ -66,13 +66,12 @@ const frutas = [
 ]
 
 var carrito = [];
-var totalCarrito = 0;
+var totalCarrito = 0.0;
 
 function allowDrop(ev) {
     ev.preventDefault();
 
 }
-
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
@@ -80,92 +79,125 @@ function drag(ev) {
 
 function drop(ev) {
     ev.preventDefault();
-    /*
-        let productoSeleccionado = ev.target.id;
-         console.log("Producto seleccionado -> "+productoSeleccionado);
-     
-         console.log("recorremos el array de frutas");
-         for (fruta of frutas){
-             if(fruta.nombre === productoSeleccionado){
-                 carrito.push(fruta);
-                 totalCarrito += fruta.precio;
-             }
-         };
-     
-         console.log(totalCarrito);
-    */
+    var fruta = ev.dataTransfer.getData("text");
+    // console.log(fruta);
 
-    var data = ev.dataTransfer.getData("text");
-    // console.log(data);
-    ev.target.appendChild(document.getElementById(data));
-    testing();
+    ev.target.appendChild(document.getElementById(fruta));
+    actualizaEstado(fruta);
 }
 
-function testing() {
+function actualizaEstado(fruta) {
     var correcto = 1;
     var frutasSeleccionadas = document.getElementsByClassName("imagen_fruta");
     for (var i = 0; i < frutasSeleccionadas.length; i++) {
-        if (frutasSeleccionadas[i].parentNode.getAttribute("id") == "carrito") {
+        if (frutasSeleccionadas[i].parentNode.getAttribute("id") === "carrito"
+            && fruta === frutasSeleccionadas[i].getAttribute("id")
+        ) {
             // cogemos el id para identificar el producto
+            console.log("añadirlo");
             // console.log(frutasSeleccionadas[i].getAttribute("id"));
             añadirCarrito(frutasSeleccionadas[i].getAttribute("id"))
+        }
+        if (frutasSeleccionadas[i].parentNode.getAttribute("id") === "mostrador"
+            && fruta === frutasSeleccionadas[i].getAttribute("id")
+        ) {
+            console.log("quitarlo");
+            // cogemos el id para identificar el producto
+            let idFruta = frutasSeleccionadas[i].getAttribute("id");
+            quitarloCarrito(idFruta)
         }
     }
 }
 
-function pintarCarrito(idFruta) {
-    let frutaSeleccionada;
+function pintarCarrito() {
+    limpiarCarrito();
+    let table = document.getElementById("tabla_body")
 
-    for (fruta of frutas) {
-        if (fruta.nombre === idFruta) {
-            frutaSeleccionada = fruta;
-        }
+    console.log("**** pintando carrito ****")
+    console.log(carrito);
+
+    for (fruta of carrito) {
+        let tr = document.createElement("tr");
+        let columna1 = document.createElement("td");
+        let columna2 = document.createElement("td");
+        let columna3 = document.createElement("td");
+        let columna4 = document.createElement("td");
+
+        columna1.innerHTML = fruta.nombre;
+        tr.appendChild(columna1);
+
+        let input = document.createElement("input");
+        input.setAttribute("type", "number");
+        input.setAttribute("placeholder", "1 Ud");
+
+        columna2.appendChild(input);
+        tr.appendChild(columna2);
+
+        columna3.innerHTML = fruta.precio + " €";
+        tr.appendChild(columna3);
+
+        let img = document.createElement("img");
+        img.setAttribute("id", "trash");
+        img.setAttribute("src", "./img/compartimiento.png")
+
+        columna4.appendChild(img);
+        tr.appendChild(columna4);
+
+        table.appendChild(tr);
     }
-
-    let table = document.getElementById("tabla_carrito")
-    let tr = document.createElement("tr");
-    let columna1 = document.createElement("td");
-    let columna2 = document.createElement("td");
-    let columna3 = document.createElement("td");
-    let columna4 = document.createElement("td");
-
-    columna1.innerHTML = frutaSeleccionada.nombre;
-    tr.appendChild(columna1);
-
-    let input = document.createElement("input");
-    input.setAttribute("type", "number");
-    input.setAttribute("placeholder", "1 Ud");
-
-    columna2.appendChild(input);
-    tr.appendChild(columna2);
-
-    columna3.innerHTML = frutaSeleccionada.precio + " €";
-    tr.appendChild(columna3);
-
-    let img = document.createElement("img");
-    img.setAttribute("id", "trash");
-    img.setAttribute("src", "./img/compartimiento.png")
-
-    columna4.appendChild(img);
-    tr.appendChild(columna4);
-
-    table.appendChild(tr);
 }
 
 function añadirCarrito(id) {
     for (let i = 0; i < frutas.length; i++) {
         let nombreFruta = frutas[i].nombre;
-        if (frutas[i].nombre === id && !carrito.includes(frutas[i])) {
+        if (nombreFruta === id && !carrito.includes(frutas[i])) {
             carrito.push(frutas[i]);
-            pintarCarrito(frutas[i].nombre);
-            totalCarrito += frutas[i].precio;
+            pintarCarrito();
+            totalCarrito += parseFloat(frutas[i].precio);
         }
     };
-    calculaTotal(totalCarrito);
+    pintartTotal(totalCarrito);
 }
 
-function calculaTotal(totalCarrito) {
-    document.getElementById("total_carrito_precio").innerHTML = totalCarrito;
+
+function limpiarCarrito() {
+    let table = document.getElementById("tabla_body")
+    while(table.hasChildNodes()){
+        table.removeChild(table.firstChild);
+    }
+}
+
+
+function quitarloCarrito(id) {
+    let idFruta = id;
+    for (let i = 0; i < carrito.length; i++) {
+        let nombreFruta = carrito[i].nombre;
+        let precioFruta = carrito[i].precio;
+
+        if (nombreFruta === idFruta && carrito.includes(carrito[i])) {
+            carrito = filtrarCarrito(carrito[i]);
+            pintarCarrito();
+            totalCarrito -= parseFloat(precioFruta);
+        }
+    };
+    pintartTotal(totalCarrito);
+}
+
+
+function filtrarCarrito(fruta) {
+    carritoAux = [];
+    for (frutaCarrito of carrito) {
+        if (fruta.nombre !== frutaCarrito.nombre) {
+            if (!carritoAux.includes(fruta)) {
+                carritoAux.push(frutaCarrito);
+            }
+        }
+    }
+    return carritoAux;
+}
+
+function pintartTotal(totalCarrito) {
+    document.getElementById("total_carrito_precio").innerHTML = totalCarrito.toString();
 }
 
 function estaContenido(idNombre) {
